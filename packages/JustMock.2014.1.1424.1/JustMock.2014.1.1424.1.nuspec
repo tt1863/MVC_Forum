@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>JustMock</id>
+    <version>2014.1.1424.1</version>
+    <title>Telerik JustMock Lite</title>
+    <authors>Telerik AD</authors>
+    <owners>Telerik AD</owners>
+    <licenseUrl>http://www.telerik.com/purchase/license-agreement/justmock-free-edition</licenseUrl>
+    <projectUrl>http://www.telerik.com/freemocking.aspx</projectUrl>
+    <iconUrl>http://www.telerik.com/sfimages/default-source/logos/jm_32x32.png?sfvrsn=2</iconUrl>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>The most powerful free mocking library available for .NET developers.</description>
+    <summary>The most powerful free mocking library available for .NET developers.</summary>
+    <releaseNotes>What's new: 
+
+New: Integrated with Ninject (dependency injection tool)
+New: Support both lite and elevated mocking in Visual Studio 2012 + Windows Store test projects
+Updated Nuget Nuspec - removed the Unity dependency
+
+What's fixed: 
+
+Fixed: Mock.Arrange is deleting previous arrangements with data-driven tests
+Fixed: Recursively mocking IEnumerable&lt;T&gt; fails
+Now all assemblies we build are digitally signed</releaseNotes>
+    <copyright>Copyright (c) 2010-2014 Telerik AD</copyright>
+    <language>en-US</language>
+    <tags>tdd mocking mocks mock aaa unittest unittesting unit-testing testing fake faking stub stubbing isolation</tags>
+    <dependencies>
+      <dependency id="CommonServiceLocator" version="[1.0]" />
+    </dependencies>
+  </metadata>
+</package>
