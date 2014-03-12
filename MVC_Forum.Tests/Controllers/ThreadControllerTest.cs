@@ -58,5 +58,23 @@ namespace MVC_Forum.Tests.Controllers
             Assert.AreEqual("Pizza is delicious", model.ToList()[1].Title);
             Assert.AreEqual("I like pancakes", model.ToList()[2].Title);
         }
+
+        [TestMethod]
+        public void ForumTitleShouldBeInViewBag()
+        {
+            // Arrange
+            var threadRepository = Mock.Create<IThreadRepository>();
+            Mock.Arrange(() => threadRepository.GetForum(1))
+                .Returns(new Forum { ForumId = 1, Title = "General Forum", Description = "Blah blah", Sequence = 1 })
+                .MustBeCalled();
+
+            // Act
+            ThreadController controller = new ThreadController(threadRepository);
+            ViewResult viewResult = controller.Index(1);
+            var expectedResult = "General Forum";
+
+            // Assert
+            Assert.AreEqual(expectedResult, viewResult.ViewBag.ForumTitle);
+        }
     }
 }
