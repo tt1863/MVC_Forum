@@ -16,12 +16,47 @@ namespace MVC_Forum.Tests.Controllers
     public class ThreadControllerTest
     {
         [TestMethod]
-        public void IndexReturnsThreadsForGivenForumId()
+        public void ThreadIndexReturnsThreadsForGivenForumId()
         {
             // Arrange
             var threadRepository = Mock.Create<IThreadRepository>();
-            Mock.Arrange(() => threadRepository.GetThreads(1))
-                .Returns
+            Mock.Arrange(() => threadRepository.GetThreads())
+                .Returns(new List<Thread>() {
+                    new Thread { ThreadId = 1, Title = "Test general thread", DateCreated = DateTime.Today, ForumId = 1 },
+                    new Thread { ThreadId = 2, Title = "I like pancakes", DateCreated = DateTime.Today.AddDays(-2), ForumId = 1 },
+                    new Thread { ThreadId = 3, Title = "Gaming thread", DateCreated = DateTime.Today.AddDays(-1), ForumId = 2 }
+                }).MustBeCalled();
+
+            // Act
+            ThreadController controller = new ThreadController(threadRepository);
+            ViewResult viewResult = controller.Index(1);
+            var model = viewResult.Model as IEnumerable<Thread>;
+
+            // Assert
+            Assert.AreEqual(2, model.Count());
+        }
+
+        [TestMethod]
+        public void ThreadsShouldBeOrderedByDateCreatedDescending()
+        {
+            // Arrange
+            var threadRepository = Mock.Create<IThreadRepository>();
+            Mock.Arrange(() => threadRepository.GetThreads())
+                .Returns(new List<Thread>() {
+                    new Thread { ThreadId = 1, Title = "Test general thread", DateCreated = DateTime.Today, ForumId = 1 },
+                    new Thread { ThreadId = 2, Title = "I like pancakes", DateCreated = DateTime.Today.AddDays(-2), ForumId = 1 },
+                    new Thread { ThreadId = 3, Title = "Pizza is delicious", DateCreated = DateTime.Today.AddDays(-1), ForumId = 1 }
+                }).MustBeCalled();
+
+            // Act
+            ThreadController controller = new ThreadController(threadRepository);
+            ViewResult viewResult = controller.Index(1);
+            var model = viewResult.Model as IEnumerable<Thread>;
+
+            // Assert
+            Assert.AreEqual("Test general thread", model.ToList()[0].Title);
+            Assert.AreEqual("Pizza is delicious", model.ToList()[1].Title);
+            Assert.AreEqual("I like pancakes", model.ToList()[2].Title);
         }
     }
 }
