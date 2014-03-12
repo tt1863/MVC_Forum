@@ -42,6 +42,11 @@ namespace MVC_Forum.DAL
             context.Entry(thread).State = EntityState.Modified;
         }
 
+        public Models.Forum GetForum(int forumId)
+        {
+            return context.Forums.Find(forumId);
+        }
+
         public void Save()
         {
             context.SaveChanges();

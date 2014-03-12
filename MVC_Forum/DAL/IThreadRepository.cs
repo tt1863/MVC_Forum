@@ -14,5 +14,6 @@ namespace MVC_Forum.DAL
         void CreateThread(Thread thread);
         void DeleteThread(int threadId);
         void UpdateThread(Thread thread);
+        Forum GetForum(int forumId);
     }
 }
