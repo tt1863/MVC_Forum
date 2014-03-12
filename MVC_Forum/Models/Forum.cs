@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
 namespace MVC_Forum.Models
 {
+    [Table("Forums")]
     public class Forum
     {
         public int ForumId { get; set; }
