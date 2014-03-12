@@ -58,5 +58,25 @@ namespace MVC_Forum.Tests.Controllers
             Assert.AreEqual("General Forum", model.ToList()[1].Title);
             Assert.AreEqual("Web Development", model.ToList()[2].Title);
         }
+
+        [TestMethod]
+        public void DeleteActionShouldRedirectToIndex()
+        {
+            // Arrange
+            var forumRepository = Mock.Create<IForumRepository>();
+            Mock.Arrange(() => forumRepository.GetForums())
+                .Returns(new List<Forum>() {
+                    new Forum { ForumId = 1, Title = "General Forum", Description = "Place to discuss general stuff", Sequence = 2 },
+                    new Forum { ForumId = 2, Title = "Gaming", Description = "Let's talk about gaming", Sequence = 1 },
+                    new Forum { ForumId = 3, Title = "Web Development", Description = "ASP.NET is pretty cool", Sequence = 3 }
+                }).MustBeCalled();
+
+            // Act
+            ForumController controller = new ForumController(forumRepository);
+            RedirectToRouteResult redirectToRouteResult = controller.Delete(1);
+
+            // Assert
+            Assert.AreEqual("Index", redirectToRouteResult.RouteName.ToString());
+        }
     }
 }
