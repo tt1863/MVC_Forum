@@ -27,6 +27,9 @@ namespace MVC_Forum.Controllers
             var threads = threadRepository.GetThreads()
                 .Where(t => t.ForumId == forumId)
                 .OrderByDescending(t => t.DateCreated);
+
+            ViewBag.ForumTitle = threadRepository.GetForum(forumId).Title;
+
             return View(threads);
         }
 	}
