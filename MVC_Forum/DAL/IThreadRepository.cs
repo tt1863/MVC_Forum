@@ -7,10 +7,10 @@ using MVC_Forum.Models;
 
 namespace MVC_Forum.DAL
 {
-    interface IThreadRepository
+    public interface IThreadRepository
     {
         IEnumerable<Thread> GetThreads();
-        Forum GetThreadById(int threadId);
+        Thread GetThreadById(int threadId);
         void CreateThread(Thread thread);
         void DeleteThread(int threadId);
         void UpdateThread(Thread thread);
