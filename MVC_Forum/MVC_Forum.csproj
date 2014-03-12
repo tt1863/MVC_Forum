@@ -161,6 +161,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ForumController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ThreadController.cs" />
     <Compile Include="DAL\ForumRepository.cs" />
     <Compile Include="DAL\IForumRepository.cs" />
     <Compile Include="DAL\IThreadRepository.cs" />
@@ -232,6 +233,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Thread\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
