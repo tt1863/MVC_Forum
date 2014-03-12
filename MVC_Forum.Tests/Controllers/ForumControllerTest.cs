@@ -16,7 +16,7 @@ namespace MVC_Forum.Tests.Controllers
     public class ForumControllerTest
     {
         [TestMethod]
-        public void IndexShouldReturnAllOfForums()
+        public void ForumIndexShouldReturnAllOfForums()
         {
             // Arrange
             var forumRepository = Mock.Create<IForumRepository>();
